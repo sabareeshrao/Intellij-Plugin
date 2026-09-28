@@ -44,6 +44,16 @@
     "semanticTargeting": false,
     "codeHighlighting": false,
     "terminalExecution": false,
-    "floatingWindow": false
+    "floatingWindow": false,
+    "customUpdateRepository": true,
+    "persistentTextScale": true,
+    "noHorizontalScroll": true,
+    "topStackedLessonText": true
+  },
+  "updateRepository": {
+    "type": "JetBrains custom plugin repository",
+    "url": "https://sabareeshrao.github.io/Intellij-Plugin/updatePlugins.xml",
+    "versionStrategy": "0.1.<github.run_number>",
+    "hosting": "GitHub Pages"
   }
 }

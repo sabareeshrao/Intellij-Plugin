@@ -67,3 +67,12 @@ Then open a local checkout of `Java-Practice-Project` in the development Intelli
 The exact curriculum commit used by the plugin is recorded in `LESSON_ENGINE_REF`.
 
 See `PROJECT_STATE.md` for the handover, implemented capability list, first manual proof, and next milestone.
+
+
+## Automatic development updates
+
+After configuring this custom repository once, IntelliJ can discover later development builds as plugin updates:
+
+`https://sabareeshrao.github.io/Intellij-Plugin/updatePlugins.xml`
+
+See `docs/AUTOMATIC_UPDATES.md` for setup details.

@@ -79,3 +79,16 @@ Order:
 ## Compatibility anchor
 
 See `LESSON_ENGINE_REF`. The plugin must never silently guess a new curriculum schema.
+
+
+## Automatic update channel
+
+A custom IntelliJ plugin repository is now published from GitHub Actions.
+
+Repository URL:
+
+`https://sabareeshrao.github.io/Intellij-Plugin/updatePlugins.xml`
+
+Each successful `main` push gets version `0.1.<workflow run number>`, builds a new ZIP, regenerates the repository XML, and deploys it to GitHub Pages. The plugin ID remains stable so an existing installation receives later versions as updates.
+
+The first update-channel build also adds persistent lesson text scaling (80%–180%), A− / 100% / A+ controls, top-stacked lesson paragraphs, viewport-width word wrapping, and a permanently disabled horizontal scrollbar.

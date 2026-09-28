@@ -20,6 +20,7 @@ public final class LessonProgressService implements PersistentStateComponent<Les
     public static final class ProgressState {
         public int lessonNumber = 1;
         public int stepIndex = 0;
+        public int textScalePercent = 100;
         public List<HistoryEntry> history = new ArrayList<>();
     }
 
@@ -65,6 +66,14 @@ public final class LessonProgressService implements PersistentStateComponent<Les
     public synchronized void setPosition(int lessonNumber, int stepIndex) {
         state.lessonNumber = Math.max(1, lessonNumber);
         state.stepIndex = Math.max(0, stepIndex);
+    }
+
+    public synchronized int textScalePercent() {
+        return Math.max(80, Math.min(180, state.textScalePercent));
+    }
+
+    public synchronized void setTextScalePercent(int percent) {
+        state.textScalePercent = Math.max(80, Math.min(180, percent));
     }
 
     public synchronized void pushHistory(HistoryEntry entry) {

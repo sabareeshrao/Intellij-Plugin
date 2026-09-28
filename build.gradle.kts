@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.sabareeshrao"
-version = "0.1.0-SNAPSHOT"
+version = providers.environmentVariable("PLUGIN_VERSION").orElse("0.1.0-SNAPSHOT").get()
 
 repositories {
     mavenCentral()
