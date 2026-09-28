@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "milestone": "M1_NATIVE_LESSON_FOUNDATION",
-  "status": "in-progress",
+  "status": "m1-validated",
   "pluginId": "com.sabareeshrao.intellijlesson",
   "javaVersion": 21,
   "intellijPlatform": {
@@ -18,5 +18,32 @@
     "openFile"
   ],
   "unsupportedActionsAreErrors": true,
-  "nextMilestone": "M2_EDITOR_AUTOMATION"
+  "nextMilestone": "M2_EDITOR_AUTOMATION",
+  "lastValidatedCommit": "f8532e046e698e255f8c62f579d12a1fe6991086",
+  "validation": {
+    "workflow": "Build IntelliJ Plugin",
+    "conclusion": "success",
+    "checks": [
+      "Gradle wrapper validation",
+      "compileJava",
+      "JUnit lesson loader test",
+      "build"
+    ]
+  },
+  "features": {
+    "toolWindow": true,
+    "courseLoader": true,
+    "persistedPosition": true,
+    "persistedEditorHistory": true,
+    "next": true,
+    "previous": true,
+    "replay": true,
+    "lessonSelector": true,
+    "realOpenFile": true,
+    "autoTyping": false,
+    "semanticTargeting": false,
+    "codeHighlighting": false,
+    "terminalExecution": false,
+    "floatingWindow": false
+  }
 }
