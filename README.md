@@ -73,6 +73,6 @@ See `PROJECT_STATE.md` for the handover, implemented capability list, first manu
 
 After configuring this custom repository once, IntelliJ can discover later development builds as plugin updates:
 
-`https://sabareeshrao.github.io/Intellij-Plugin/updatePlugins.xml`
+`https://raw.githubusercontent.com/sabareeshrao/Intellij-Plugin/plugin-repository/updatePlugins.xml`
 
 See `docs/AUTOMATIC_UPDATES.md` for setup details.

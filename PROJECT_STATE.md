@@ -87,8 +87,13 @@ A custom IntelliJ plugin repository is now published from GitHub Actions.
 
 Repository URL:
 
-`https://sabareeshrao.github.io/Intellij-Plugin/updatePlugins.xml`
+`https://raw.githubusercontent.com/sabareeshrao/Intellij-Plugin/plugin-repository/updatePlugins.xml`
 
-Each successful `main` push gets version `0.1.<workflow run number>`, builds a new ZIP, regenerates the repository XML, and deploys it to GitHub Pages. The plugin ID remains stable so an existing installation receives later versions as updates.
+Each successful `main` push gets version `0.1.<workflow run number>`, builds a new ZIP, regenerates the repository XML, and deploys it to the dedicated `plugin-repository` branch. The plugin ID remains stable so an existing installation receives later versions as updates.
 
 The first update-channel build also adds persistent lesson text scaling (80%–180%), A− / 100% / A+ controls, top-stacked lesson paragraphs, viewport-width word wrapping, and a permanently disabled horizontal scrollbar.
+
+
+### Update-channel publication note
+
+The first Pages-based attempt built and tested plugin version 0.1.8 successfully but could not deploy because Pages was not enabled on the new repository. The final architecture removes that dependency: GitHub Actions now publishes `updatePlugins.xml` and the versioned plugin ZIP directly to the dedicated `plugin-repository` branch, served over HTTPS by `raw.githubusercontent.com`.

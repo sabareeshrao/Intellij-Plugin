@@ -52,8 +52,9 @@
   },
   "updateRepository": {
     "type": "JetBrains custom plugin repository",
-    "url": "https://sabareeshrao.github.io/Intellij-Plugin/updatePlugins.xml",
+    "url": "https://raw.githubusercontent.com/sabareeshrao/Intellij-Plugin/plugin-repository/updatePlugins.xml",
     "versionStrategy": "0.1.<github.run_number>",
-    "hosting": "GitHub Pages"
+    "hosting": "GitHub plugin-repository branch via raw.githubusercontent.com",
+    "publishBranch": "plugin-repository"
   }
 }

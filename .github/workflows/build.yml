@@ -6,12 +6,10 @@ on:
   pull_request:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: intellij-plugin-pages
+  group: intellij-plugin-publish
   cancel-in-progress: false
 
 jobs:
@@ -27,10 +25,13 @@ jobs:
           java-version: "21"
       - uses: gradle/actions/wrapper-validation@v4
       - uses: gradle/actions/setup-gradle@v4
+
       - name: Build and test plugin
         run: ./gradlew build --stacktrace
+
       - name: Build installable plugin ZIP
         run: ./gradlew buildPlugin --stacktrace
+
       - name: Upload installable plugin artifact
         uses: actions/upload-artifact@v4
         with:
@@ -52,7 +53,7 @@ jobs:
           <plugins>
             <plugin
                 id="com.sabareeshrao.intellijlesson"
-                url="https://sabareeshrao.github.io/Intellij-Plugin/plugins/$PLUGIN_FILE"
+                url="https://raw.githubusercontent.com/sabareeshrao/Intellij-Plugin/plugin-repository/plugins/$PLUGIN_FILE"
                 version="$PLUGIN_VERSION">
               <idea-version since-build="252"/>
               <name>AeroTopo Lesson Runner</name>
@@ -62,36 +63,41 @@ jobs:
           </plugins>
           EOF
 
-          cat > site/index.html <<EOF
-          <!doctype html>
-          <html lang="en">
-          <head><meta charset="utf-8"><title>AeroTopo Lesson Runner Plugin Repository</title></head>
-          <body>
-            <h1>AeroTopo Lesson Runner</h1>
-            <p>Current development version: <strong>$PLUGIN_VERSION</strong></p>
-            <p>Custom repository URL:</p>
-            <code>https://sabareeshrao.github.io/Intellij-Plugin/updatePlugins.xml</code>
-          </body>
-          </html>
+          cat > site/README.md <<EOF
+          # AeroTopo Lesson Runner Plugin Repository
+
+          Current development version: **$PLUGIN_VERSION**
+
+          IntelliJ custom repository URL:
+
+          \`\`\`text
+          https://raw.githubusercontent.com/sabareeshrao/Intellij-Plugin/plugin-repository/updatePlugins.xml
+          \`\`\`
           EOF
 
-      - name: Configure GitHub Pages
+      - name: Publish custom plugin repository branch
         if: github.event_name == 'push'
-        uses: actions/configure-pages@v5
-      - name: Upload GitHub Pages content
-        if: github.event_name == 'push'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          PUBLISH_DIR="$(mktemp -d)"
+          git clone --quiet "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$PUBLISH_DIR"
+          cd "$PUBLISH_DIR"
 
-  deploy:
-    if: github.event_name == 'push'
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy custom plugin repository
-        id: deployment
-        uses: actions/deploy-pages@v4
+          if git ls-remote --exit-code --heads origin plugin-repository >/dev/null 2>&1; then
+            git fetch --quiet origin plugin-repository
+            git checkout --quiet -B plugin-repository origin/plugin-repository
+          else
+            git checkout --quiet --orphan plugin-repository
+          fi
+
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -R "$GITHUB_WORKSPACE/site/." .
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish plugin $PLUGIN_VERSION"
+          git push --quiet origin plugin-repository
