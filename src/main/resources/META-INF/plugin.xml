@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>com.sabareeshrao.intellijlesson</id>
+    <name>AeroTopo Lesson Runner</name>
+    <version>0.1.0-SNAPSHOT</version>
+    <vendor>Sabareesh Rao</vendor>
+
+    <description><![CDATA[
+        Runs the AeroTopo lesson curriculum directly inside real IntelliJ IDEA.
+        The plugin loads simulation/course.json from the opened project and drives
+        native lesson navigation and IDE actions.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow
+                id="AeroTopo Lessons"
+                anchor="right"
+                factoryClass="com.sabareeshrao.intellijlesson.ui.LessonToolWindowFactory"/>
+    </extensions>
+</idea-plugin>
