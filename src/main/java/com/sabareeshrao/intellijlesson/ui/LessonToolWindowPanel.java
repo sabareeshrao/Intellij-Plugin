@@ -2,7 +2,6 @@ package com.sabareeshrao.intellijlesson.ui;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.ScrollPaneFactory;
-import com.intellij.ui.components.JBComboBox;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBTextArea;
 import com.sabareeshrao.intellijlesson.model.LessonCourse;
@@ -26,7 +25,7 @@ public final class LessonToolWindowPanel extends JPanel {
     private final JBTextArea explanationArea = textArea();
     private final JBTextArea answerArea = textArea();
 
-    private final JBComboBox<LessonItem> lessonSelector = new JBComboBox<>();
+    private final JComboBox<LessonItem> lessonSelector = new JComboBox<>();
     private boolean rendering;
 
     public LessonToolWindowPanel(Project project) {
