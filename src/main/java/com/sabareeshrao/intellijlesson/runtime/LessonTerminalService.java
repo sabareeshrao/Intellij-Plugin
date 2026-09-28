@@ -28,7 +28,6 @@ public final class LessonTerminalService {
                     .workingDirectory(project.getBasePath())
                     .tabName("AeroTopo Lesson")
                     .requestFocus(true)
-                    .restoreOnProjectReopen(false)
                     .createTab();
         }
 
