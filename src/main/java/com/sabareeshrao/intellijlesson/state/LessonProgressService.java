@@ -29,14 +29,28 @@ public final class LessonProgressService implements PersistentStateComponent<Les
         public int stepIndex;
         public String activeFile = "";
         public int caretOffset;
+        public String mutatedFile = "";
+        public boolean mutatedFileExisted;
+        public String previousFileContent = "";
 
         public HistoryEntry() {}
 
-        public HistoryEntry(int lessonNumber, int stepIndex, String activeFile, int caretOffset) {
+        public HistoryEntry(
+                int lessonNumber,
+                int stepIndex,
+                String activeFile,
+                int caretOffset,
+                String mutatedFile,
+                boolean mutatedFileExisted,
+                String previousFileContent
+        ) {
             this.lessonNumber = lessonNumber;
             this.stepIndex = stepIndex;
             this.activeFile = activeFile == null ? "" : activeFile;
             this.caretOffset = Math.max(0, caretOffset);
+            this.mutatedFile = mutatedFile == null ? "" : mutatedFile;
+            this.mutatedFileExisted = mutatedFileExisted;
+            this.previousFileContent = previousFileContent == null ? "" : previousFileContent;
         }
     }
 

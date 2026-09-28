@@ -97,3 +97,21 @@ The first update-channel build also adds persistent lesson text scaling (80%–1
 ### Update-channel publication note
 
 The first Pages-based attempt built and tested plugin version 0.1.8 successfully but could not deploy because Pages was not enabled on the new repository. The final architecture removes that dependency: GitHub Actions now publishes `updatePlugins.xml` and the versioned plugin ZIP directly to the dedicated `plugin-repository` branch, served over HTTPS by `raw.githubusercontent.com`.
+
+
+## M2 real editor/terminal automation
+
+Added after M1:
+
+- target platform raised to IntelliJ 2025.3 API level so the official Reworked Terminal API is available;
+- Terminal plugin declared as a real plugin dependency;
+- `createFile` visibly auto-types lesson content into real editor files;
+- `typeCode` progressively types into the real editor at the caret;
+- `highlightTarget` uses real yellow editor highlighting with expected-text fallback;
+- `openIntegratedTerminal` opens/focuses a dedicated real Terminal tab;
+- `typeTerminal` types commands character-by-character and executes them in the real shell;
+- `deleteResource` cleans lesson-created temporary files;
+- Previous restores the pre-action file contents/existence for code-mutating actions;
+- navigation is blocked while an auto-typing animation is still running.
+
+Lesson 31 is the recommended M2 proof because its existing curriculum naturally exercises openFile → createFile/auto-type → highlight → real terminal command → cleanup.

@@ -76,6 +76,8 @@ public final class LessonRuntimeService {
         LessonCourse.Lesson nextLesson = course.lessons().get(next.lessonIndex());
         LessonCourse.Step nextStep = nextLesson.steps().get(next.stepIndex());
         EditorStateSupport.Snapshot snapshot = EditorStateSupport.capture(project);
+        ProjectMutationSupport.Snapshot mutation = ProjectMutationSupport.capture(project, nextStep.action());
+        project.getService(LessonHighlightService.class).clear();
         LessonActionExecutor.Execution execution = dispatcher.execute(project, nextStep.action());
 
         if (!execution.success()) {
@@ -86,17 +88,32 @@ public final class LessonRuntimeService {
                 current.get().lesson().lessonNumber(),
                 current.get().stepIndex(),
                 snapshot.relativeFile(),
-                snapshot.caretOffset()
+                snapshot.caretOffset(),
+                mutation.relativeFile(),
+                mutation.existed(),
+                mutation.previousContent()
         ));
         progress.setPosition(nextLesson.lessonNumber(), next.stepIndex());
         return Result.ok(execution.message());
     }
 
     public Result previous() {
+        if (project.getService(LessonTypingService.class).isBusy()) {
+            return Result.fail("Auto-typing is still in progress. Wait for it to finish before going Previous.");
+        }
+        project.getService(LessonHighlightService.class).clear();
         Optional<LessonProgressService.HistoryEntry> history = progress.popHistory();
         if (history.isPresent()) {
             LessonProgressService.HistoryEntry entry = history.get();
             progress.setPosition(entry.lessonNumber, entry.stepIndex);
+            ProjectMutationSupport.restore(
+                    project,
+                    new ProjectMutationSupport.Snapshot(
+                            entry.mutatedFile,
+                            entry.mutatedFileExisted,
+                            entry.previousFileContent
+                    )
+            );
             EditorStateSupport.restore(
                     project,
                     new EditorStateSupport.Snapshot(entry.activeFile, entry.caretOffset)
@@ -120,6 +137,9 @@ public final class LessonRuntimeService {
     }
 
     public Result replay() {
+        if (project.getService(LessonTypingService.class).isBusy()) {
+            return Result.fail("Auto-typing is still in progress. Wait for it to finish before Replay.");
+        }
         Optional<CurrentStep> current = current();
         if (current.isEmpty()) {
             return Result.fail(loadError);

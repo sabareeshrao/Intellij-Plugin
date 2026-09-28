@@ -20,8 +20,9 @@ dependencies {
     testRuntimeOnly("junit:junit:4.13.2")
 
     intellijPlatform {
-        intellijIdea("2025.2.6.1")
+        intellijIdea("2025.3.6.1")
         bundledPlugin("com.intellij.java")
+        bundledPlugin("org.jetbrains.plugins.terminal")
     }
 }
 
@@ -34,7 +35,7 @@ java {
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "252"
+            sinceBuild = "253"
         }
     }
 }

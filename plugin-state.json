@@ -15,10 +15,17 @@
     "coursePath": "simulation/course.json"
   },
   "supportedActions": [
-    "openFile"
+    "openProject",
+    "openFile",
+    "highlightTarget",
+    "createFile",
+    "typeCode",
+    "openIntegratedTerminal",
+    "typeTerminal",
+    "deleteResource"
   ],
   "unsupportedActionsAreErrors": true,
-  "nextMilestone": "M2_EDITOR_AUTOMATION",
+  "nextMilestone": "M2_SEMANTIC_PSI_TARGETING_AND_TOOL_WINDOWS",
   "lastValidatedCommit": "f8532e046e698e255f8c62f579d12a1fe6991086",
   "validation": {
     "workflow": "Build IntelliJ Plugin",
@@ -40,15 +47,18 @@
     "replay": true,
     "lessonSelector": true,
     "realOpenFile": true,
-    "autoTyping": false,
+    "autoTyping": true,
     "semanticTargeting": false,
-    "codeHighlighting": false,
+    "codeHighlighting": true,
     "terminalExecution": false,
     "floatingWindow": false,
     "customUpdateRepository": true,
     "persistentTextScale": true,
     "noHorizontalScroll": true,
-    "topStackedLessonText": true
+    "topStackedLessonText": true,
+    "terminalAutoTyping": true,
+    "realTerminal": true,
+    "reversibleFileSnapshots": true
   },
   "updateRepository": {
     "type": "JetBrains custom plugin repository",
@@ -56,5 +66,9 @@
     "versionStrategy": "0.1.<github.run_number>",
     "hosting": "GitHub plugin-repository branch via raw.githubusercontent.com",
     "publishBranch": "plugin-repository"
+  },
+  "intelliJPlatform": {
+    "targetIde": "2025.3.6.1",
+    "sinceBuild": "253"
   }
 }
