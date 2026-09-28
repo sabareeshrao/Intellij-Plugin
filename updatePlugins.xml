@@ -2,11 +2,11 @@
 <plugins>
   <plugin
       id="com.sabareeshrao.intellijlesson"
-      url="https://raw.githubusercontent.com/sabareeshrao/Intellij-Plugin/plugin-repository/plugins/Intellij-Plugin-0.1.9.zip"
-      version="0.1.9">
-    <idea-version since-build="252"/>
+      url="https://raw.githubusercontent.com/sabareeshrao/Intellij-Plugin/plugin-repository/plugins/Intellij-Plugin-0.1.11.zip"
+      version="0.1.11">
+    <idea-version since-build="253"/>
     <name>AeroTopo Lesson Runner</name>
     <description><![CDATA[Runs the AeroTopo lesson curriculum directly inside real IntelliJ IDEA.]]></description>
-    <change-notes><![CDATA[Development build 0.1.9 from commit 1a401e5.]]></change-notes>
+    <change-notes><![CDATA[Development build 0.1.11 from commit 6ba7dda.]]></change-notes>
   </plugin>
 </plugins>

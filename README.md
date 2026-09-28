@@ -1,6 +1,6 @@
 # AeroTopo Lesson Runner Plugin Repository
 
-Current development version: **0.1.9**
+Current development version: **0.1.11**
 
 IntelliJ custom repository URL:
 
