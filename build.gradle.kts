@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation("com.google.code.gson:gson:2.13.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     intellijPlatform {
         intellijIdea("2025.2.6.1")
