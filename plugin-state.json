@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M1_NATIVE_LESSON_FOUNDATION",
+  "status": "in-progress",
+  "pluginId": "com.sabareeshrao.intellijlesson",
+  "javaVersion": 21,
+  "intellijPlatform": {
+    "gradlePlugin": "2.19.0",
+    "targetIde": "2025.2.6.1",
+    "sinceBuild": "252"
+  },
+  "lessonEngine": {
+    "repository": "sabareeshrao/Java-Practice-Project",
+    "ref": "27708566c3837961ceabdf8a77b7880a8f3faef7",
+    "coursePath": "simulation/course.json"
+  },
+  "supportedActions": [
+    "openFile"
+  ],
+  "unsupportedActionsAreErrors": true,
+  "nextMilestone": "M2_EDITOR_AUTOMATION"
+}
